@@ -4,7 +4,7 @@ const cloudinary = require("cloudinary").v2
 ///////////////////////////// additional functions used in uploading ////////////////////////////////////
 
 function fileSupported( supportedTypes, fileType){
-
+    console.log("inside the function to check if file type suported")
     return supportedTypes.includes(fileType);
 }
 
@@ -109,14 +109,15 @@ exports.videoUploadHander = async ( req , res ) => {
         const { name , email , tags } = req.body;
         //get the file from the request
         const file = req.files.videoFile;
+        console.log("file is : ",file)
 
         // validation on the video file
-        const validTypes = ["mov", "mp4"]
-        const videoFileType = videoFile.name.split(".")[1];
-        if(!fileSupported( validTypes , videoFileType)){
-            res.json({
+        const supportedTypes = [ "mp4","mov"]
+        const fileType = file.name.split(".")[1].toLowerCase();
+        if( !fileSupported( supportedTypes , fileType) ){
+            return res.json({
                 success : false,
-                message : "Video file type not supported"
+                message : "File type not supported"
             })
         }
 
