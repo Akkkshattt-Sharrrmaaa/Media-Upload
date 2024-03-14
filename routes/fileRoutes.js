@@ -1,16 +1,16 @@
 const express = require("express")
 const router = express.Router()
 
-const { localFileUploadHandler } = require("../controllers/fileUploadHandler")
+const { localFileUploadHandler , imageUploadHandler, videoUploadHander } = require("../controllers/fileUploadHandler")
 
 // routes
     // upload from local device
 router.post("/localUpload", localFileUploadHandler)
     // upload image to cloudinary
-router.post()
+router.post("/imageUpload", imageUploadHandler)
     // upload video to cloudinary
-router.post()
+router.post("/videoUpload", videoUploadHander)
     // reduce image size and upload
-router.post()
+// router.post()
 
 module.exports = router;

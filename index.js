@@ -8,7 +8,10 @@ const PORT = process.env.PORT || 4000
 // use of middlewares
 app.use(express.json())
 const fileUpload = require("express-fileupload")
-app.use(fileUpload())
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : '/tmp/'
+}))
 
 
 // connect to the database
